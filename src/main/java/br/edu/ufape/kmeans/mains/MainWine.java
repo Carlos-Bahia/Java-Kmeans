@@ -3,7 +3,7 @@ package br.edu.ufape.kmeans.mains;
 import br.edu.ufape.kmeans.Cluster;
 import br.edu.ufape.kmeans.DataPoint;
 import br.edu.ufape.kmeans.FileWriter;
-import br.edu.ufape.kmeans.algorithm.Kmeans;
+import br.edu.ufape.kmeans.algorithm.FireflyKmeans;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,18 +35,21 @@ public class MainWine {
             e.printStackTrace();
         }
 
-        //K para Rice
+        //K para Wine
         int k = 3;
-        Kmeans kmeans = new Kmeans(k, dataPoints);
-        kmeans.initialize();
-        kmeans.process();
 
-//        Esperado
-//        class 1 59
-//        class 2 71
-//        class 3 48
+        int numFireflies = 50;
+        int maxInterations = 100;
+        double alpha = 0.2;
+        double beta = 1.0;
+        double gamma = 1.0;
 
-        List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("wine-Kmeans-Manhattan.txt", clusters, 4, dataPoints);
+        FireflyKmeans fireflyKmeans = new FireflyKmeans(k, dataPoints, numFireflies, maxInterations, alpha, beta, gamma);
+        fireflyKmeans.initialize();
+        fireflyKmeans.process();
+
+
+        List<Cluster> clusters = fireflyKmeans.getClusters();
+        FileWriter.writeClustersToFile("Firefly-wine-Kmeans.txt", clusters, 4, dataPoints);
     }
 }

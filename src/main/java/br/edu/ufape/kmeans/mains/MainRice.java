@@ -3,7 +3,7 @@ package br.edu.ufape.kmeans.mains;
 import br.edu.ufape.kmeans.Cluster;
 import br.edu.ufape.kmeans.DataPoint;
 import br.edu.ufape.kmeans.FileWriter;
-import br.edu.ufape.kmeans.algorithm.Kmeans;
+import br.edu.ufape.kmeans.algorithm.FireflyKmeans;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,14 +37,19 @@ public class MainRice {
 
         //K para Rice
         int k = 2;
-        Kmeans kmeans = new Kmeans(k, dataPoints);
-        kmeans.initialize();
-        kmeans.process();
 
-        //Esperado Cameo - 1630
-        //Osmancik - 2180
+        int numFireflies = 50;
+        int maxInterations = 100;
+        double alpha = 0.2;
+        double beta = 1.0;
+        double gamma = 1.0;
 
-        List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("rice-Kmeans-Manhattan.txt", clusters, 3, dataPoints);
+        FireflyKmeans fireflyKmeans = new FireflyKmeans(k, dataPoints, numFireflies, maxInterations, alpha, beta, gamma);
+        fireflyKmeans.initialize();
+        fireflyKmeans.process();
+
+
+        List<Cluster> clusters = fireflyKmeans.getClusters();
+        FileWriter.writeClustersToFile("Firefly-rice-Kmeans.txt", clusters, 3, dataPoints);
     }
 }

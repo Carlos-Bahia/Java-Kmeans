@@ -3,7 +3,7 @@ package br.edu.ufape.kmeans.mains;
 import br.edu.ufape.kmeans.Cluster;
 import br.edu.ufape.kmeans.DataPoint;
 import br.edu.ufape.kmeans.FileWriter;
-import br.edu.ufape.kmeans.algorithm.Kmeans;
+import br.edu.ufape.kmeans.algorithm.FireflyKmeans;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -97,12 +97,18 @@ public class MainMFeat {
             idDataPoint++;
         }
 
-        int k = 10; // Número de clusters, ajuste conforme necessário
-        Kmeans kmeans = new Kmeans(k, dataPoints);
-        kmeans.initialize();
-        kmeans.process();
+        int k = 10;
+        int numFireflies = 30;
+        int maxInterations = 50;
+        double alpha = 0.2;
+        double beta = 1.0;
+        double gamma = 1.0;
 
-        List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("mfeat-Kmeans-Manhattan.txt", clusters, 2, dataPoints);
+        FireflyKmeans fireflyKmeans = new FireflyKmeans(k, dataPoints, numFireflies, maxInterations, alpha, beta, gamma);
+        fireflyKmeans.initialize();
+        fireflyKmeans.process();
+
+        List<Cluster> clusters = fireflyKmeans.getClusters();
+        FileWriter.writeClustersToFile("Firefly-mfeat-Kmeans.txt", clusters, 2, dataPoints);
     }
 }
