@@ -45,6 +45,6 @@ public class MainRice {
         //Osmancik - 2180
 
         List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("rice-Kmeans.txt", clusters, 3, dataPoints);
+        FileWriter.writeClustersToFile("rice-Kmeans-Chebyshev.txt", clusters, 3, dataPoints);
     }
 }

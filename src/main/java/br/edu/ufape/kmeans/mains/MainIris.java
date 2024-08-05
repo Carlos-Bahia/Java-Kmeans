@@ -42,7 +42,7 @@ public class MainIris {
         kmeans.process();
 
         List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("Iris-Kmeans.txt", clusters, 1, dataPoints);
+        FileWriter.writeClustersToFile("Iris-Kmeans-Chebyshev.txt", clusters, 1, dataPoints);
 
     }
 }

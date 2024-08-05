@@ -22,11 +22,15 @@ public class DataPoint {
         this.coordinates = coordinates;
     }
 
+    //Distância de Chebyshev
     public double distance(DataPoint other) {
-        double sum = 0;
+        double maxDistance = 0;
         for (int i = 0; i < coordinates.length; i++) {
-            sum += Math.pow(coordinates[i] - other.coordinates[i], 2);
+            double dist = Math.abs(coordinates[i] - other.coordinates[i]);
+            if (dist > maxDistance) {
+                maxDistance = dist;
+            }
         }
-        return Math.sqrt(sum);
+        return maxDistance;
     }
 }

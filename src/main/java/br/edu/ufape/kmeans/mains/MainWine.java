@@ -47,6 +47,6 @@ public class MainWine {
 //        class 3 48
 
         List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("wine-Kmeans.txt", clusters, 4, dataPoints);
+        FileWriter.writeClustersToFile("wine-Kmeans-Chebyshev.txt", clusters, 4, dataPoints);
     }
 }
