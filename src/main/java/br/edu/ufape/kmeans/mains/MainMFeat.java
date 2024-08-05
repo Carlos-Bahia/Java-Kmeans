@@ -103,6 +103,6 @@ public class MainMFeat {
         kmeans.process();
 
         List<Cluster> clusters = kmeans.getClusters();
-        FileWriter.writeClustersToFile("mfeat-Kmeans.txt", clusters, 2, dataPoints);
+        FileWriter.writeClustersToFile("mfeat-Kmeans-Manhattan.txt", clusters, 2, dataPoints);
     }
 }

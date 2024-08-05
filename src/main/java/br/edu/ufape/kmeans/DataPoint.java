@@ -22,11 +22,12 @@ public class DataPoint {
         this.coordinates = coordinates;
     }
 
+    //Distância de Manhattan
     public double distance(DataPoint other) {
         double sum = 0;
         for (int i = 0; i < coordinates.length; i++) {
-            sum += Math.pow(coordinates[i] - other.coordinates[i], 2);
+            sum += Math.abs(coordinates[i] - other.coordinates[i]);
         }
-        return Math.sqrt(sum);
+        return sum;
     }
 }
